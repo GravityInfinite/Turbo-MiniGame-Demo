@@ -10,7 +10,7 @@
 
 #### 引入
 
-下载`turbo.min.js`文件并引入到工程中，文件可以去[GitHub 开源项目](https://github.com/GravityInfinite/Turbo-MiniProgram-Demo)下载。
+下载 `turbo.min.js`文件并引入到工程中，文件可以去[GitHub 开源项目](https://github.com/GravityInfinite/Turbo-MiniProgram-Demo)下载。
 
 ```javascript
 var turbo = require("./utils/turbo.min.js");
@@ -36,10 +36,6 @@ turbo.init("your_access_token", "your_client_id");
  * @param {string} channel   用户注册渠道
  * @param {number} version   用户注册的程序版本
  * @param {string} click_id  用户点击广告id 微信小程序/小游戏选填
- * @param {string} media_type 投放的媒体类型
-    bytedance 头条（巨量广告）
-    kuaishou 快手广告
-    tencent 腾讯广告
  * @param {string} wx_openid 用户wxopenid 微信小程序/小游戏必填
  * @param {string} wx_unionid 微信union_id 微信小程序/小游戏选填
  */
@@ -50,7 +46,6 @@ turbo
     channel: "your_channel",
     version: 123,
     click_id: "your_click_id",
-    media_type: "bytedance",
     wx_openid: "your_wx_openid",
     wx_unionid: "your_wx_unionid",
   })
@@ -69,10 +64,6 @@ turbo
  * @param {string} click_id 用户点击广告id 微信小程序/小游戏传入选填
  * @param {string} wx_openid 用户wxopenid 微信小程序/小游戏传入
  * @param {string} wx_unionid 微信union_id 微信小程序/小游戏选填
- * @param {string} media_type 投放的媒体类型
-    bytedance 头条（巨量广告）
-    kuaishou 快手广告
-    tencent 腾讯广告
  */
 
 turbo
@@ -80,7 +71,6 @@ turbo
     click_id: "your_click_id",
     wx_openid: "your_wx_openid",
     wx_unionid: "your_wx_unionid",
-    media_type: "bytedance",
   })
   .then(() => {
     wx.showToast({

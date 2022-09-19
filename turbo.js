@@ -20,7 +20,6 @@ var globalData = {
 
 var turbo = {};
 
-
 /**
  * @name getQuery
  * @return {object} url query
@@ -46,7 +45,7 @@ function getPlatForm() {
   ) {
     return "bytedance";
   } else {
-    return "tencent";
+    return "";
   }
 }
 
@@ -87,21 +86,21 @@ turbo.register = function (e = {}) {
   if (!e?.version && e?.version !== 0) {
     throw new Error("version must be required");
   }
-  if (!isNumber(e?.version)) {
+  if (!isNumber(e?.version) || typeof e?.version !== "number") {
     throw new Error("version must be type: Number");
   }
+  var platform = getPlatForm();
   var data = {
     client_id: globalData.client_id,
     name: e.name,
     channel: e.channel,
     version: e.version,
-    media_type: e.media_type || "tencent",
+    media_type: platform || "tencent",
     wx_openid: e?.wx_openid || "",
     wx_unionid: e?.wx_unionid || "",
     click_id: e?.click_id || "",
     ad_data: {},
   };
-  var platform = getPlatForm();
   var query = getQuery();
   if (platform === "kuaishou") {
     data.ad_data = {
@@ -138,6 +137,7 @@ turbo.register = function (e = {}) {
 
 turbo.updateData = function (e = {}) {
   globalChecked();
+  var platform = getPlatForm();
   return new Promise(function (resolve, reject) {
     wx.request({
       url: `${baseurl}/user/update_data/?access_token=${globalData.access_token}&client_id=${globalData.client_id}`,
@@ -146,7 +146,7 @@ turbo.updateData = function (e = {}) {
       data: {
         click_id: e?.click_id || "",
         wx_openid: e?.wx_openid || "",
-        media_type: e?.media_type || "tencent",
+        media_type: platform || e?.media_type || "tencent",
         wx_unionid: e?.wx_unionid || "",
       },
       success(res) {

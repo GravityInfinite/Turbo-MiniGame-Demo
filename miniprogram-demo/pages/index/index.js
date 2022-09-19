@@ -10,7 +10,6 @@ Page({
         channel: "your_channel",
         version: 123,
         click_id: "your_click_id",
-        media_type: "bytedance",
         wx_openid: "your_wx_openid",
         wx_unionid: "your_wx_unionid",
       })
@@ -26,7 +25,6 @@ Page({
         click_id: "your_click_id",
         wx_openid: "your_wx_openid",
         wx_unionid: "your_wx_unionid",
-        media_type: "bytedance",
       })
       .then(() => {
         wx.showToast({
