@@ -32,6 +32,7 @@ turbo.init("your_access_token", "your_client_id");
 ```javascript
 /**
  * 在用户注册或者可以获取到用户唯一性信息时调用，推荐首次安装启动时调用
+ * 后续其他接口，均需要等register接口完成之后才能继续调用
  * @param {string} name 用户名
  * @param {string} channel   用户注册渠道
  * @param {number} version   用户注册的程序版本
@@ -50,6 +51,7 @@ turbo
     wx_unionid: "your_wx_unionid",
   })
   .then(() => {
+    // 在这之后继续做其他的方法调用
     wx.showToast({
       title: "register successfully",
     });
@@ -90,6 +92,7 @@ turbo
     pay 付费
     twice 次留
     key_active 关键行为
+    start 程序启动 每次启动结束之后都调用一次
  * @param properties event_type=pay时必填，结构体，包含以下字段
     amount: 原价金额,单位为分
     real_amount: 实际付款金额,单位为分
@@ -143,6 +146,36 @@ turbo
       title: "handleConsumerEvent successfully",
     });
   });
+```
+
+#### queryUser 查询用户信息
+
+```javascript
+/**
+ * 查询用户信息，包括
+ * 1. client_id       用户ID
+ * 2. channel         用户渠道
+ * 3. click_company   用户买量来源，枚举值 为：tencent、bytedance、kuaishou  为空则为自然量用户
+ * 4. aid             广告计划ID
+ * 5. cid             广告创意ID
+ * 
+ * 返回示例如下，具体可以打印返回的data查看
+ * "user_list": [
+      {
+        "create_time": "2022-09-09 14:50:04",
+        "client_id": "Bn2RhTcU",
+        "channel": "wechat_mini_game",
+        "click_company": "gdt",
+        "aid": "65802182823",
+        "cid": "65580218538"
+      },
+    ]
+ */
+turbo.queryUser().then((data) => {
+  wx.showToast({
+    title: "queryUser successfully",
+  });
+});
 ```
 
 #### License

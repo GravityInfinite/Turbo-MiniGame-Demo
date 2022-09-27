@@ -126,7 +126,7 @@ turbo.register = function (e = {}) {
       header,
       data,
       success(res) {
-        resolve(res);
+        res.statusCode === 200 ? resolve(res.data) : reject(res);
       },
       fail(err) {
         reject(err);
@@ -150,7 +150,7 @@ turbo.updateData = function (e = {}) {
         wx_unionid: e?.wx_unionid || "",
       },
       success(res) {
-        resolve(res);
+        res.statusCode === 200 ? resolve(res.data) : reject(res);
       },
       fail(err) {
         reject(err);
@@ -180,7 +180,7 @@ turbo.handleEvent = function (e = {}) {
       header,
       data,
       success(res) {
-        resolve(res);
+        res.statusCode === 200 ? resolve(res.data) : reject(res);
       },
       fail(err) {
         reject(err);
@@ -217,7 +217,28 @@ turbo.consumerEvent = function (e = {}) {
       header,
       data,
       success(res) {
-        resolve(res);
+        res.statusCode === 200 ? resolve(res.data) : reject(res);
+      },
+      fail(err) {
+        reject(err);
+      },
+    });
+  });
+};
+
+turbo.queryUser = function () {
+  globalChecked();
+  var data = {
+    user_list: [globalData.client_id],
+  };
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: `${baseurl}/user/get/?access_token=${globalData.access_token}`,
+      method: "POST",
+      header,
+      data,
+      success(res) {
+        res.statusCode === 200 ? resolve(res.data) : reject(res);
       },
       fail(err) {
         reject(err);

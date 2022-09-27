@@ -4,4 +4,5 @@
   <button type="primary" bindtap="handleUpdateData">用户数据更新</button>
   <button type="primary" bindtap="handleEvent">埋点事件上报</button>
   <button type="primary" bindtap="handleConsumerEvent">消费事件上报</button>
+  <button type="primary" bindtap="handleQueryUser">查询用户信息</button>
 </view>

@@ -62,4 +62,12 @@ Page({
         });
       });
   },
+  handleQueryUser() {
+    turbo.queryUser().then((data) => {
+      console.log(data);
+      wx.showToast({
+        title: "queryUser successfully",
+      });
+    });
+  },
 });
