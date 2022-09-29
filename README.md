@@ -1,6 +1,6 @@
 ## turbo-sdk-miniprogram
 
-本文档为**微信小程序/小游戏**接入 [turbo 引力引擎](https://gravity-engine.com/)的技术接入方案，具体 Demo 请参考[GitHub 开源项目](https://github.com/GravityInfinite/Turbo-MiniProgram-Demo)。
+本文档为**微信小程序/小游戏**接入 [turbo 引力引擎](https://gravity-engine.com/)的技术接入方案，具体 Demo 请参考[GitHub](https://github.com/GravityInfinite/Turbo-MiniProgram-Demo)或者[Gitee](https://gitee.com/GravityInfinite/Turbo-MiniProgram-Demo)开源项目（国内用户推荐Gitee）。
 
 目前支持以下买量平台跳转微信小程序/小游戏
 
@@ -10,7 +10,7 @@
 
 #### 引入
 
-下载 `turbo.min.js`文件并引入到工程中，文件可以去[GitHub 开源项目](https://github.com/GravityInfinite/Turbo-MiniProgram-Demo)下载。
+去上述开源代码仓库中下载 `turbo.min.js`文件并引入到工程中。
 
 ```javascript
 var turbo = require("./utils/turbo.min.js");
@@ -158,12 +158,14 @@ turbo
  * 3. click_company   用户买量来源，枚举值 为：tencent、bytedance、kuaishou  为空则为自然量用户
  * 4. aid             广告计划ID
  * 5. cid             广告创意ID
+ * 6. advertiser_id   广告账户ID
  * 
  * 返回示例如下，具体可以打印返回的data查看
  * "user_list": [
       {
         "create_time": "2022-09-09 14:50:04",
         "client_id": "Bn2RhTcU",
+        "advertiser_id": "12948974294275",
         "channel": "wechat_mini_game",
         "click_company": "gdt",
         "aid": "65802182823",
