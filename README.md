@@ -22,8 +22,6 @@ import turbo from "./utils/turbo.min.js";
 var turbo = require('./utils/turbo.min.js');
 ```
 
-> 📢 注意：并且请将微信开发工具右上角 详情-本地设置-**将JS编译成ES5** 勾选上。
-
 #### 1.2 配置初始化参数
 引入 SDK 后，可通过 setPara() 可进行 SDK 初始化参数配置：
 
@@ -49,7 +47,7 @@ setPara() 配置初始化参数后，可调用 init() 方法来初始化 SDK：
 /**
  * 此方法会初始化Turbo需要的基础参数（需要确保每次启动都必须要调用）
  * @param {string} accessToken    项目通行证，在：网站后台-->管理中心-->应用列表中找到Access Token列 复制（首次使用可能需要先新增应用）
- * @param {string} client_id      用户唯一标识，如微信小程序/小游戏的openid
+ * @param {string} client_id      用户唯一标识，如微信小游戏的openid
  */
 turbo.init("your_access_token", "your_client_id");
 ```
@@ -68,9 +66,9 @@ turbo.init("your_access_token", "your_client_id");
  * @param {string} name         用户名（必填）
  * @param {string} channel      用户注册渠道（必填）
  * @param {number} version      用户注册的程序版本（必填）
- * @param {string} click_id     用户点击广告id 微信小程序/小游戏选填
- * @param {string} wx_openid    微信open id (微信小程序和小游戏必填)
- * @param {string} wx_unionid   微信union id（微信小程序和小游戏选填）
+ * @param {string} click_id     用户点击广告id 微信小游戏选填
+ * @param {string} wx_openid    微信open id (微信小游戏必填)
+ * @param {string} wx_unionid   微信union id（微信小游戏选填）
  */
 
 turbo
