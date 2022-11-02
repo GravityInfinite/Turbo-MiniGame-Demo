@@ -1,1 +1,3 @@
-具体使用，请参考```app.js```和```index.js```文件
+minigame-demo
+
+主入口game.js，调用示例在js/main.js中

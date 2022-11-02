@@ -123,7 +123,8 @@ turbo._meta = {
 };
 
 function initAppProxy() {
-  wx.onAppShow(function (para) {
+  // miinprogram: wx.onAppShow
+  wx.onShow(function (para) {
     if (!turbo._meta.life_state.app_launched) {
       const option = wx.getLaunchOptionsSync() || {};
       turbo._autoTrackCustom.appLaunch(option);
@@ -131,7 +132,8 @@ function initAppProxy() {
     turbo._autoTrackCustom.appShow(para);
   });
 
-  wx.onAppHide(function () {
+  // miinprogram: wx.onAppHide
+  wx.onHide(function () {
     turbo._autoTrackCustom.appHide();
   });
 }
@@ -406,6 +408,7 @@ turbo.loginEvent = function () {
 turbo.logoutEvent = function () {
   turbo.track("$MPLogout", {});
 };
+// miniprogram 使用
 function monitorHooks() {
   var oldPage = Page;
   Page = function (option) {
@@ -470,6 +473,31 @@ function monitorHooks() {
     }
   };
 }
-monitorHooks();
+// monitorHooks();
+
+function gameShareAndFavorite() {
+  if (turbo._para.autoTrack.appShare) {
+    wx.onShareAppMessage(function () {
+      turbo.track("$MPShare", {
+        $share_method: "转发消息卡片",
+        $share_depth: getCurrentPages().length,
+      });
+    });
+    wx.onShareTimeline(function () {
+      turbo.track("$MPShare", {
+        $share_method: "朋友圈分享",
+        $share_depth: getCurrentPages().length,
+      });
+    });
+  }
+  if (turbo._para.autoTrack.appFavorites) {
+    wx.onAddToFavorites(function () {
+      turbo.track("$MPAddFavorites", {
+        $url_path: getCurrentPage()?.route || "",
+      });
+    });
+  }
+}
+gameShareAndFavorite();
 
 export default turbo;
