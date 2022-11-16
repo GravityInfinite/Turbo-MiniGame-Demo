@@ -13,7 +13,7 @@
 #### 1.1 导入 SDK
 
 - 从[GitHub](https://github.com/GravityInfinite/Turbo-MiniGame-Demo/releases)上获取微信小游戏 SDK 源码；
-- 将`turbo.min.js`文件放入小游戏项目中；
+- 将 `turbo.min.js`文件放入小游戏项目中；
 - 在 game.js 文件中通过 import 引入 SDK
 
 ```javascript
@@ -37,8 +37,6 @@ turbo.setPara({
     appLaunch: true, // 默认为 true，false 则关闭 $MPLaunch 事件采集
     appShow: true, // 默认为 true，false 则关闭 $MPShow 事件采集
     appHide: true, // 默认为 true，false 则关闭 $MPHide 事件采集
-    appShare: true, // 默认为 true，false 则关闭 $MPShare 事件采集
-    appFavorites: true, // 默认为 true，false 则关闭 $MPFavorites 事件采集
   },
   show_log: true, // 默认为 false，true 则在事件发生时打印log到console控制台，方便调试，建议在开发阶段打开
 });
@@ -69,7 +67,7 @@ turbo.init("your_access_token", "your_client_id");
 
 #### 2.1 用户注册引力引擎
 
-在用户注册或者可以获取到用户唯一性信息时调用此方法，推荐首次安装启动时调用，后续其他接口，均需要等`register`接口完成之后才能继续调用
+在用户注册或者可以获取到用户唯一性信息时调用此方法，推荐首次安装启动时调用，后续其他接口，均需要等 `register`接口完成之后才能继续调用
 
 ```javascript
 /**
@@ -100,7 +98,7 @@ turbo
 
 #### 2.2 用户注册事件上报
 
-当用户注册成功时，需要调用`registerEvent`方法记录用户注册事件
+当用户注册成功时，需要调用 `registerEvent`方法记录用户注册事件
 
 ```javascript
 turbo.registerEvent();
@@ -108,7 +106,7 @@ turbo.registerEvent();
 
 #### 2.3 用户登录事件上报
 
-当用户登录成功时，需要调用`loginEvent`方法记录用户登录事件
+当用户登录成功时，需要调用 `loginEvent`方法记录用户登录事件
 
 ```javascript
 turbo.loginEvent();
@@ -116,7 +114,7 @@ turbo.loginEvent();
 
 #### 2.4 用户注销登录事件上报
 
-当用户注销登录时，需要调用`logoutEvent`方法记录用户登出事件
+当用户注销登录时，需要调用 `logoutEvent`方法记录用户登出事件
 
 ```javascript
 turbo.logoutEvent();
@@ -124,7 +122,7 @@ turbo.logoutEvent();
 
 #### 2.5 买量埋点事件上报
 
-当发生以下买量节点事件时，通过`handleEvent`方法上报事件
+当发生以下买量节点事件时，通过 `handleEvent`方法上报事件
 
 ```javascript
 /**
@@ -160,7 +158,7 @@ turbo
 
 #### 2.6 查询用户信息
 
-可以通过调用`queryUser`方法获知当前用户的买量信息
+可以通过调用 `queryUser`方法获知当前用户的买量信息
 
 ```javascript
 /**
@@ -202,7 +200,7 @@ turbo.registerApp({
 });
 ```
 
-> 📢 注意：公共属性需要先在`引力引擎后台-->管理中心-->元数据-->事件属性`中添加，否则会上报失败。
+> 📢 注意：公共属性需要先在 `引力引擎后台-->管理中心-->元数据-->事件属性`中添加，否则会上报失败。
 
 #### 2.8 代码埋点追踪自定义事件
 
@@ -270,7 +268,7 @@ turbo.profileAppend({
 
 #### 3.5 用户属性的删除
 
-调用`profileDelete()`方法，讲把当前用户属性清空
+调用 `profileDelete()`方法，讲把当前用户属性清空
 
 ```javascript
 // // 删除一个用户的整个 Profile

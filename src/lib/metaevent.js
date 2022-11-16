@@ -1,7 +1,7 @@
 import turbo from "../index";
 import { setQuery } from "../utils/tools";
 
-let mpshow_time = null;
+let mpshow_time = new Date().getTime();
 export const autoTrackCustom = {
   appLaunch: function (option) {
     if (!turbo?._para?.autoTrack?.appLaunch) {
@@ -35,7 +35,7 @@ export const autoTrackCustom = {
       current_time - mpshow_time > 0 &&
       (current_time - mpshow_time) / 3600000 < 24
     ) {
-      event_duration = (current_time - mpshow_time);
+      event_duration = current_time - mpshow_time;
     }
     turbo.track("$MPHide", {
       $event_duration: event_duration,

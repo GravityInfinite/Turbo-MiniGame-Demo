@@ -4,6 +4,11 @@ import turbo from "./js/utils/turbo.min"
 import Main from './js/main'
 
 turbo.setPara({
+  autoTrack: {
+    appLaunch: true,
+    appShow: true,
+    appHide: true
+  },
   show_log: true
 })
 turbo.init('gZGljPsq7I4wc3BMvkAUsevQznx1jahi', "your_client_id");

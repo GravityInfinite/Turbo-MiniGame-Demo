@@ -1,13 +1,7 @@
 import { register, handleEvent, queryUser } from "./lib/customEvent";
 import { autoTrackCustom } from "./lib/metaEvent";
 import { header, batch_send_default } from "./lib/config";
-import {
-  getStorageSync,
-  logger,
-  extend2Lev,
-  isObject,
-  getCurrentPage,
-} from "./utils/tools";
+import { getStorageSync, logger, extend2Lev, isObject } from "./utils/tools";
 import { eventProperty } from "./lib/eventProperty";
 
 const turbo = {};
@@ -109,8 +103,6 @@ turbo._para = {
     appLaunch: true, // 默认为 true，false 则关闭 $MPLaunch 事件采集
     appShow: true, // 默认为 true，false 则关闭 $MPShow 事件采集
     appHide: true, // 默认为 true，false 则关闭 $MPHide 事件采集
-    appShare: true, // $MPShare
-    appFavorites: true, // $MPAddFavorites
   },
   // 是否允许控制台打印查看埋点数据(建议开启查看)
   show_log: false,
@@ -124,18 +116,23 @@ turbo._meta = {
 
 function initAppProxy() {
   // miinprogram: wx.onAppShow
-  wx.onShow(function (para) {
-    if (!turbo._meta.life_state.app_launched) {
-      const option = wx.getLaunchOptionsSync() || {};
-      turbo._autoTrackCustom.appLaunch(option);
-    }
-    turbo._autoTrackCustom.appShow(para);
-  });
-
-  // miinprogram: wx.onAppHide
-  wx.onHide(function () {
-    turbo._autoTrackCustom.appHide();
-  });
+  if (turbo?._para?.autoTrack?.appShow) {
+    wx.onShow(function (para) {
+      if (!turbo._meta.life_state.app_launched) {
+        if (turbo?._para?.autoTrack?.appLaunch) {
+          const option = wx.getLaunchOptionsSync() || {};
+          turbo._autoTrackCustom.appLaunch(option);
+        }
+      }
+      turbo._autoTrackCustom.appShow(para);
+    });
+  }
+  if (turbo?._para?.autoTrack?.appHide) {
+    // miinprogram: wx.onAppHide
+    wx.onHide(function () {
+      turbo._autoTrackCustom.appHide();
+    });
+  }
 }
 function checkAppLaunch() {
   if (!turbo._meta.life_state.app_launched) {
@@ -408,96 +405,5 @@ turbo.loginEvent = function () {
 turbo.logoutEvent = function () {
   turbo.track("$MPLogout", {});
 };
-// miniprogram 使用
-function monitorHooks() {
-  var oldPage = Page;
-  Page = function (option) {
-    try {
-      option.onShareAppMessage = function () {
-        if (turbo._para.autoTrack.appShare) {
-          turbo.track("$MPShare", {
-            $share_method: "转发消息卡片",
-            $share_depth: getCurrentPages().length,
-          });
-        }
-      };
-      option.onShareTimeline = function () {
-        if (turbo._para.autoTrack.appShare) {
-          turbo.track("$MPShare", {
-            $share_method: "朋友圈分享",
-            $share_depth: getCurrentPages().length,
-          });
-        }
-      };
-      option.onAddToFavorites = function () {
-        if (turbo._para.autoTrack.appFavorites) {
-          turbo.track("$MPAddFavorites", {
-            $url_path: getCurrentPage()?.route || "",
-          });
-        }
-      };
-      oldPage.apply(this, arguments);
-    } catch (error) {
-      oldPage.apply(this, arguments);
-    }
-  };
-  var oldComponent = Component;
-  Component = function (option) {
-    try {
-      option.onShareAppMessage = function () {
-        if (turbo._para.autoTrack.appShare) {
-          turbo.track("$MPShare", {
-            $share_method: "转发消息卡片",
-            $share_depth: getCurrentPages().length,
-          });
-        }
-      };
-      option.onShareTimeline = function () {
-        if (turbo._para.autoTrack.appShare) {
-          turbo.track("$MPShare", {
-            $share_method: "朋友圈分享",
-            $share_depth: getCurrentPages().length,
-          });
-        }
-      };
-      option.onAddToFavorites = function () {
-        if (turbo._para.autoTrack.appFavorites) {
-          turbo.track("$MPAddFavorites", {
-            $url_path: getCurrentPage()?.route || "",
-          });
-        }
-      };
-      oldComponent.apply(this, arguments);
-    } catch (error) {
-      oldComponent.apply(this, arguments);
-    }
-  };
-}
-// monitorHooks();
-
-function gameShareAndFavorite() {
-  if (turbo._para.autoTrack.appShare) {
-    wx.onShareAppMessage(function () {
-      turbo.track("$MPShare", {
-        $share_method: "转发消息卡片",
-        $share_depth: getCurrentPages().length,
-      });
-    });
-    wx.onShareTimeline(function () {
-      turbo.track("$MPShare", {
-        $share_method: "朋友圈分享",
-        $share_depth: getCurrentPages().length,
-      });
-    });
-  }
-  if (turbo._para.autoTrack.appFavorites) {
-    wx.onAddToFavorites(function () {
-      turbo.track("$MPAddFavorites", {
-        $url_path: getCurrentPage()?.route || "",
-      });
-    });
-  }
-}
-gameShareAndFavorite();
 
 export default turbo;
