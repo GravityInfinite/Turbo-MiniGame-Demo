@@ -36,7 +36,7 @@ export const eventProperty = {
         $model: info.model,
         $brand: String(info.brand).toLocaleUpperCase(),
         $manufacturer: info.brand,
-        $lib_version: "3.2.4",
+        $lib_version: "3.2.6",
       };
       for (let item in temp_systeminfo) {
         if (temp_systeminfo.hasOwnProperty(item)) {
