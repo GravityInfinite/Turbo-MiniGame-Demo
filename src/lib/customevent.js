@@ -54,6 +54,8 @@ export const register = function (e = {}) {
       advertiser_id: query?.advertiser_id || "",
       request_id: query?.request_id || "",
     };
+  } else if (platform === "tencent") {
+    data.ad_data = { gdt_vid: query?.gdt_vid || "" };
   }
   return new Promise(function (resolve, reject) {
     wx.request({

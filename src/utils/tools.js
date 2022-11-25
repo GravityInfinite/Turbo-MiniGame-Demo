@@ -34,6 +34,8 @@ export function getPlatForm() {
     query.advertiser_id
   ) {
     return "bytedance";
+  } else if (query.gdt_vid) {
+    return "tencent";
   } else {
     return "";
   }
