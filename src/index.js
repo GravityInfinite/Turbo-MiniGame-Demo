@@ -6,6 +6,7 @@ import {
   logger,
   extend2Lev,
   isObject,
+  dateFormate,
   setQuery,
 } from "./utils/tools";
 import { eventProperty } from "./lib/eventProperty";
@@ -91,12 +92,12 @@ turbo._store = {
     if (!info) {
       turbo._is_first_launch = true;
       wx.setStorageSync(turbo._para.storage_store_key, true);
+      const commonProps = eventProperty.getProperties();
       turbo.profileSetOnce({
-        $first_visit_time: new Date()
-          .toLocaleString("cn", {
-            hour12: false,
-          })
-          .replaceAll("/", "-"),
+        $first_visit_time: dateFormate(new Date(), true),
+        $os: commonProps.$os,
+        $brand: commonProps.$brand,
+        $model: commonProps.$model,
       });
     }
   },

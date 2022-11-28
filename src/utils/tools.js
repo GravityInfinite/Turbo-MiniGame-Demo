@@ -162,3 +162,25 @@ export function getCurrentPage() {
 
   return obj;
 }
+
+export function dateFormate(dateTime, timeflag) {
+  const date = new Date(Date.parse(dateTime));
+  const y = date.getFullYear();
+  let m = date.getMonth() + 1;
+  m = m < 10 ? `0${m}` : m;
+  let d = date.getDate();
+  d = d < 10 ? `0${d}` : d;
+  let h = date.getHours();
+  h = h < 10 ? `0${h}` : h;
+  let minute = date.getMinutes();
+  minute = minute < 10 ? `0${minute}` : minute;
+  let seconds = date.getSeconds();
+  seconds = seconds < 10 ? `0${seconds}` : seconds;
+  let result = "";
+  if (timeflag) {
+    result = `${y}-${m}-${d} ${h}:${minute}:${seconds}`;
+  } else {
+    result = `${y}-${m}-${d}`;
+  }
+  return result;
+}
