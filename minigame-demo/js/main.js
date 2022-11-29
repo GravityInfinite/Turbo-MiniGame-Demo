@@ -1,4 +1,5 @@
 import turbo from "./utils/turbo.min"
+import { dateFormate } from "./utils/tools";
 
 export default class Main {
   handleRegister() {
@@ -47,25 +48,19 @@ export default class Main {
   // 若某key已存在则覆盖,否则将自动创建并赋值
   handleProfileSet() {
     turbo.profileSet({
-      $first_visit_time: new Date().toLocaleString('cn', {
-        hour12: false
-      }).replaceAll("/", "-"),
+      $first_visit_time: dateFormate(new Date(), true),
       friends_num: 1,
       arr: [1, 2],
       "$name": "your_value",
       "$gender": "x",
-      $signup_time: new Date().toLocaleString('cn', {
-        hour12: false
-      }).replaceAll("/", "-")
+      $signup_time: dateFormate(new Date(), true),
     })
   }
 
   // 此事件在第一次$MPLaunch后会自动调用，若该key已存在则忽略，否则将自动创建并赋值
   handleProfileSetOnce() {
     turbo.profileSetOnce({
-      "$first_visit_time": new Date().toLocaleString('cn', {
-        hour12: false
-      }).replaceAll("/", "-")
+      "$first_visit_time": dateFormate(new Date(), true),
     })
   }
 

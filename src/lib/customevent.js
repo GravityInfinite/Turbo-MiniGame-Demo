@@ -65,13 +65,6 @@ export const register = function (e = {}) {
       data,
       success(res) {
         if (res.statusCode === 200) {
-          turbo.profileSetOnce({
-            $signup_time: new Date()
-              .toLocaleString("cn", {
-                hour12: false,
-              })
-              .replaceAll("/", "-"),
-          });
           resolve(res.data);
           return;
         }
