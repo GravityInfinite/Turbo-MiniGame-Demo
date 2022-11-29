@@ -37,6 +37,7 @@ export const eventProperty = {
         $brand: String(info.brand).toLocaleUpperCase(),
         $manufacturer: info.brand,
         $lib_version: "3.2.7",
+        $lib: "MiniGame",
       };
       for (let item in temp_systeminfo) {
         if (temp_systeminfo.hasOwnProperty(item)) {
