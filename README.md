@@ -169,6 +169,14 @@ turbo
  * 4. aid             广告计划ID
  * 5. cid             广告创意ID
  * 6. advertiser_id   广告账户ID
+ * 7. bytedance_v2    头条体验版数据（用户如果为头条体验版投放获取的，bytedance_v2才有值）
+ *    1. project_id   项目ID
+ *    2. promotion_id 广告ID
+ *    3. mid1         图片ID
+ *    4. mid2         标题ID
+ *    5. mid3         视频ID
+ *    6. mid4         试完ID
+ *    7. mid5         落地页ID
  *
  * 返回示例如下，具体可以打印返回的data查看
  * "user_list": [
@@ -179,7 +187,17 @@ turbo
         "channel": "wechat_mini_game",
         "click_company": "gdt",
         "aid": "65802182823",
-        "cid": "65580218538"
+        "cid": "65580218538",
+ 	"bytedance_v2": {
+          "project_id":"924563792",
+          "promotion_id":"93795753",
+          "mid1":"3256634642",
+          "mid2":"2353252367",
+          "mid3":"3245235236",
+          "mid4":"6346347623",
+          "mid5":"7345232424"
+        }
+
       },
     ]
  */
