@@ -26,6 +26,8 @@ export default class Main {
           real_amount: 200,
         },
         timestamp: 1000,
+        use_client_time: true,
+        trace_id: "test",
       })
       .then(() => {
         wx.showToast({
